@@ -1,3 +1,11 @@
+/*
+ * @Author: FoolishDominator 1340995873@qq.com
+ * @Date: 2025-05-16 16:17:02
+ * @LastEditors: FoolishDominator 1340995873@qq.com
+ * @LastEditTime: 2025-05-25 12:44:29
+ * @FilePath: /2025s-rustling-FoolishDominator/exercises/quiz2.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // quiz2.rs
 //
 // This is a quiz for the following sections:
@@ -20,8 +28,6 @@
 //
 // No hints this time!
 
-// I AM NOT DONE
-
 pub enum Command {
     Uppercase,
     Trim,
@@ -32,11 +38,23 @@ mod my_module {
     use super::Command;
 
     // TODO: Complete the function signature!
-    pub fn transformer(input: ???) -> ??? {
+    pub fn transformer(input: Vec<(String, Command)>) -> Vec<String> {
         // TODO: Complete the output declaration!
-        let mut output: ??? = vec![];
+        let mut output: Vec<String> = Vec::new();
         for (string, command) in input.iter() {
             // TODO: Complete the function body. You can do it!
+            match command {
+                Command::Uppercase => {
+                    output.push(string.to_uppercase());
+                }
+                Command::Trim => {
+                    output.push(string.trim().to_string());
+                }
+                Command::Append(n) => {
+                    let result = format!("{}{}", string, "bar".repeat(*n));
+                    output.push(result);
+                }
+            }
         }
         output
     }
@@ -45,7 +63,7 @@ mod my_module {
 #[cfg(test)]
 mod tests {
     // TODO: What do we need to import to have `transformer` in scope?
-    use ???;
+    use super::my_module::transformer;
     use super::Command;
 
     #[test]

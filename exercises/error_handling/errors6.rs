@@ -1,3 +1,11 @@
+/*
+ * @Author: FoolishDominator 1340995873@qq.com
+ * @Date: 2025-05-16 16:17:02
+ * @LastEditors: FoolishDominator 1340995873@qq.com
+ * @LastEditTime: 2025-05-25 20:20:12
+ * @FilePath: /2025s-rustling-FoolishDominator/exercises/error_handling/errors6.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // errors6.rs
 //
 // Using catch-all error types like `Box<dyn error::Error>` isn't recommended
@@ -8,8 +16,6 @@
 //
 // Execute `rustlings hint errors6` or use the `hint` watch subcommand for a
 // hint.
-
-// I AM NOT DONE
 
 use std::num::ParseIntError;
 
@@ -25,13 +31,15 @@ impl ParsePosNonzeroError {
         ParsePosNonzeroError::Creation(err)
     }
     // TODO: add another error conversion function here.
-    // fn from_parseint...
+    fn from_parseint(err: ParseIntError) -> ParsePosNonzeroError {
+        ParsePosNonzeroError::ParseInt(ParseIntError::from(err))
+    }
 }
 
 fn parse_pos_nonzero(s: &str) -> Result<PositiveNonzeroInteger, ParsePosNonzeroError> {
     // TODO: change this to return an appropriate error instead of panicking
     // when `parse()` returns an error.
-    let x: i64 = s.parse().unwrap();
+    let x: i64 = s.parse().map_err(ParsePosNonzeroError::from_parseint)?;
     PositiveNonzeroInteger::new(x).map_err(ParsePosNonzeroError::from_creation)
 }
 

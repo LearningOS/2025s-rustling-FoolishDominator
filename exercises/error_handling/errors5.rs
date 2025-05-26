@@ -1,3 +1,11 @@
+/*
+ * @Author: FoolishDominator 1340995873@qq.com
+ * @Date: 2025-05-16 16:17:02
+ * @LastEditors: FoolishDominator 1340995873@qq.com
+ * @LastEditTime: 2025-05-25 19:46:51
+ * @FilePath: /2025s-rustling-FoolishDominator/exercises/error_handling/errors5.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AEEE
+ */
 // errors5.rs
 //
 // This program uses an altered version of the code from errors4.
@@ -22,14 +30,12 @@
 // Execute `rustlings hint errors5` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
 
 // TODO: update the return type of `main()` to make this compile.
-fn main() -> Result<(), Box<dyn ???>> {
+fn main() -> Result<(), Box<dyn error::Error>> {
     let pretend_user_input = "42";
     let x: i64 = pretend_user_input.parse()?;
     println!("output={:?}", PositiveNonzeroInteger::new(x)?);

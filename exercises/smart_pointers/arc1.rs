@@ -1,3 +1,11 @@
+/*
+ * @Author: FoolishDominator 1340995873@qq.com
+ * @Date: 2025-05-16 16:17:02
+ * @LastEditors: FoolishDominator 1340995873@qq.com
+ * @LastEditTime: 2025-05-29 21:34:51
+ * @FilePath: /2025s-rustling-FoolishDominator/exercises/smart_pointers/arc1.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // arc1.rs
 //
 // In this exercise, we are given a Vec of u32 called "numbers" with values
@@ -21,19 +29,17 @@
 //
 // Execute `rustlings hint arc1` or use the `hint` watch subcommand for a hint.
 
-// I AM NOT DONE
-
 #![forbid(unused_imports)] // Do not change this, (or the next) line.
 use std::sync::Arc;
 use std::thread;
 
 fn main() {
     let numbers: Vec<_> = (0..100u32).collect();
-    let shared_numbers = // TODO
+    let shared_numbers = Arc::new(numbers); // TODO: Create an Arc from `numbers`
     let mut joinhandles = Vec::new();
 
     for offset in 0..8 {
-        let child_numbers = // TODO
+        let child_numbers = Arc::clone(&shared_numbers); // TODO: Clone the Arc to share it with the thread
         joinhandles.push(thread::spawn(move || {
             let sum: u32 = child_numbers.iter().filter(|&&n| n % 8 == offset).sum();
             println!("Sum of offset {} is {}", offset, sum);

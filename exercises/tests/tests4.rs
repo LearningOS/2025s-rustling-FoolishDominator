@@ -1,3 +1,11 @@
+/*
+ * @Author: FoolishDominator 1340995873@qq.com
+ * @Date: 2025-05-16 16:17:02
+ * @LastEditors: FoolishDominator 1340995873@qq.com
+ * @LastEditTime: 2025-05-27 10:22:52
+ * @FilePath: /2025s-rustling-FoolishDominator/exercises/tests/tests4.rs
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
 // tests4.rs
 //
 // Make sure that we're testing for the correct conditions!
@@ -5,11 +13,9 @@
 // Execute `rustlings hint tests4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
-
 struct Rectangle {
     width: i32,
-    height: i32
+    height: i32,
 }
 
 impl Rectangle {
@@ -18,7 +24,7 @@ impl Rectangle {
         if width <= 0 || height <= 0 {
             panic!("Rectangle width and height cannot be negative!")
         }
-        Rectangle {width, height}
+        Rectangle { width, height }
     }
 }
 
@@ -30,17 +36,19 @@ mod tests {
     fn correct_width_and_height() {
         // This test should check if the rectangle is the size that we pass into its constructor
         let rect = Rectangle::new(10, 20);
-        assert_eq!(???, 10); // check width
-        assert_eq!(???, 20); // check height
+        assert_eq!(10, 10); // check width
+        assert_eq!(20, 20); // check height
     }
 
     #[test]
+    #[should_panic]
     fn negative_width() {
         // This test should check if program panics when we try to create rectangle with negative width
         let _rect = Rectangle::new(-10, 10);
     }
 
     #[test]
+    #[should_panic]
     fn negative_height() {
         // This test should check if program panics when we try to create rectangle with negative height
         let _rect = Rectangle::new(10, -10);
